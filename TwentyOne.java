@@ -3,7 +3,7 @@ import java.lang.management.PlatformLoggingMXBean;
 import java.util.Scanner;
 public class TwentyOne {
 
-    public static void remove(int[] array, int removeIndex){
+    public static void remove(String[] array, int removeIndex){
 
         for(int i = removeIndex; i < array.length - 1; i++){
             array[i] = array[i + 1];
@@ -34,11 +34,27 @@ public class TwentyOne {
 
     }
 
-    public static int draw(int[] deck, int deckSize){
+    public static int draw(String[] deck, int deckSize){
 
         int index = (int) (Math.random()*deckSize - 1);
-        int card = deck[index];
+        int card = Character.getNumericValue(deck[index].charAt(0));
         remove(deck, index);
+
+        if(deck[index].length() == 2) {
+            System.out.println("Your card: " + card + " of " + deck[index].charAt(1));
+        } else if(deck[index].length() == 3) {
+            System.out.println("Your card: " + card + " of " + deck[index].charAt(2));
+        } else if(deck[index].length() == 4){
+            if(deck[index].charAt(3) == 'j') {
+                System.out.println("Your card: Jack of " + deck[index].charAt(2));
+            }
+            if(deck[index].charAt(3) == 'q') {
+                System.out.println("Your card: Queen of " + deck[index].charAt(2));
+            }
+            if(deck[index].charAt(3) == 'k') {
+                System.out.println("Your card: King of " + deck[index].charAt(2));
+            }
+        }
 
         return card;
 
@@ -57,16 +73,23 @@ public class TwentyOne {
         //String player2;
         //String player3;
 
-        int[] deck = {11, 11, 11, 11,
-                      2, 2, 2, 2,
-                      3, 3, 3, 3,
-                      4, 4, 4, 4,
-                      5, 5, 5, 5,
-                      6, 6, 6, 6,
-                      7, 7, 7, 7,
-                      8, 8, 8, 8,
-                      9, 9, 9, 9,
-                      10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
+        String[] deck = {"1♠", "1♦", "1♥", "1♣",
+                         "2♠", "2♦", "2♥", "2♣",
+                         "3♠", "3♦", "3♥", "3♣",
+                         "4♠", "4♦", "4♥", "4♣",
+                         "5♠", "5♦", "5♥", "5♣",
+                         "6♠", "6♦", "6♥", "6♣",
+                         "7♠", "7♦", "7♥", "7♣",
+                         "8♠", "8♦", "8♥", "8♣",
+                         "9♠", "9♦", "9♥", "9♣",
+                         "10♠", "10♦", "10♥", "10♣",
+                         "10♠k", "10♦k", "10♥k", "10♣k",
+                         "10♠q", "10♦q", "10♥q", "10♣q",
+                         "10♠j", "10♦j", "10♥j", "10♣j"};
+        // diamond
+        // heart
+        // club
+        // spade
 
         // put the code to draw first to cards here and then put the code to the code for the game n the while loop
 
@@ -97,6 +120,8 @@ public class TwentyOne {
             input.nextLine();
 
         }
+
+        System.out.println("♥♦♣♠" );
 
 
     }
