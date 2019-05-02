@@ -1,12 +1,5 @@
 import java.util.Scanner;
-import java.util.Arrays;
 public class TwentyOne {
-
-    public static int randomNum(int deckSize){
-
-        return (int) (Math.random()* deckSize);
-
-    }
 
     public static void remove(int[] array, int removeIndex){
 
@@ -27,15 +20,25 @@ public class TwentyOne {
         if(playerCardsTotal > computerCardsTotal && playerCardsTotal < 21){
             return true;
         }
-        
+
         return false;
+
+    }
+
+    public static int draw(int[] deck, int deckSze){
+
+        int index = (int) (Math.random()*deckSze);
+        int card = deck[index];
+        remove(deck, index);
+
+        return card;
 
     }
 
     public static void main(String[] args){
         Scanner input = new Scanner (System.in);
 
-        int deckSize = 52;
+        int deckSize = 51;
 
         System.out.print("Enter your name: ");
         String player1 = input.nextLine();
@@ -52,8 +55,6 @@ public class TwentyOne {
                       8, 8, 8, 8,
                       9, 9, 9, 9,
                       10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
-
-
 
 
 
