@@ -1,9 +1,7 @@
-import java.io.IOException;
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.Scanner;
 public class TwentyOne {
 
-    public static void remove(String[] array, int removeIndex){
+    public static void remove(int[] array, int removeIndex){
 
         for(int i = removeIndex; i < array.length - 1; i++){
             array[i] = array[i + 1];
@@ -34,85 +32,103 @@ public class TwentyOne {
 
     }
 
-    public static int draw(String[] deck, int deckSize){
+    public static int draw(int[] deckNum, int deckSize, String name){
 
         int index = (int) (Math.random()*deckSize - 1);
-        int card = Character.getNumericValue(deck[index].charAt(0));
-        remove(deck, index);
+        int card = deckNum[index];
+        remove(deckNum, index);
 
-        if(deck[index].length() == 2) {
-            System.out.println("Your card: " + card + " of " + deck[index].charAt(1));
-        } else if(deck[index].length() == 3) {
-            System.out.println("Your card: " + card + " of " + deck[index].charAt(2));
-        } else if(deck[index].length() == 4){
-            if(deck[index].charAt(3) == 'j') {
-                System.out.println("Your card: Jack of " + deck[index].charAt(2));
-            }
-            if(deck[index].charAt(3) == 'q') {
-                System.out.println("Your card: Queen of " + deck[index].charAt(2));
-            }
-            if(deck[index].charAt(3) == 'k') {
-                System.out.println("Your card: King of " + deck[index].charAt(2));
-            }
+        if(index % 4 == 0){
+            System.out.println(name + "'s card: " + card + " of clubs");
+        } else if(index % 4 == 1){
+            System.out.println(name + "'s card: " + card + " of diamonds");
+        } else if(index % 4 == 2){
+            System.out.println(name + "'s card: " + card + " of hearts");
+        } else{
+            System.out.println(name + "'s card: " + card + " of spades");
         }
 
         return card;
 
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Scanner input = new Scanner (System.in);
 
         int deckSize = 51;
-        int playerTotal = 0;
+        int player1Total = 0;
+        int player2Total = 0;
+        int player3Total = 0;
         int computerTotal = 0;
         boolean isRunning = true;
 
-       // System.out.print("Enter your name: ");
-        //String player1 = input.nextLine();
-        //String player2;
-        //String player3;
+        int[] deckValue =   {1, 1, 1, 1,
+                            2, 2, 2, 2,
+                            3, 3, 3, 3,
+                            4, 4, 4, 4,
+                            5, 5, 5, 5,
+                            6, 6, 6, 6,
+                            7, 7, 7, 7,
+                            8, 8, 8, 8,
+                            9, 9, 9, 9,
+                            10, 10, 10, 10,
+                            10, 10, 10, 10,
+                            10, 10, 10, 10,
+                            10, 10, 10, 10};
 
-        String[] deck = {"1♠", "1♦", "1♥", "1♣",
-                         "2♠", "2♦", "2♥", "2♣",
-                         "3♠", "3♦", "3♥", "3♣",
-                         "4♠", "4♦", "4♥", "4♣",
-                         "5♠", "5♦", "5♥", "5♣",
-                         "6♠", "6♦", "6♥", "6♣",
-                         "7♠", "7♦", "7♥", "7♣",
-                         "8♠", "8♦", "8♥", "8♣",
-                         "9♠", "9♦", "9♥", "9♣",
-                         "10♠", "10♦", "10♥", "10♣",
-                         "10♠k", "10♦k", "10♥k", "10♣k",
-                         "10♠q", "10♦q", "10♥q", "10♣q",
-                         "10♠j", "10♦j", "10♥j", "10♣j"};
-        // diamond
-        // heart
-        // club
-        // spade
 
         // put the code to draw first to cards here and then put the code to the code for the game n the while loop
 
+        System.out.println("1. Play");
+        System.out.println("2. How To Play");
+
+        int option = input.nextInt();
+
+        if(option == 2) {
+
+            System.out.println("If your first two cards add to 21 you win, congrats!");
+            System.out.println("Press Enter to play");
+            input.nextLine();
+
+        }
+
+        input.nextLine();
+        System.out.print("Player 1 name: ");
+        String player1 = input.nextLine();
+        System.out.print("Player 2 name: ");
+        String player2 = input.nextLine();
+        System.out.print("Player 3 name: ");
+        String player3 = input.nextLine();
+
+        player1Total += draw(deckValue, deckSize, player1);
+        deckSize--;
+        player2Total += draw(deckValue, deckSize, player2);
+        deckSize--;
+        player3Total += draw(deckValue, deckSize, player3);
+        deckSize--;
+        computerTotal += draw( deckValue, deckSize, "Computer");
+        deckSize--;
+        player1Total += draw(deckValue, deckSize, player1);
+        deckSize--;
+        player2Total += draw(deckValue, deckSize, player2);
+        deckSize--;
+        player3Total += draw(deckValue, deckSize, player3);
+        deckSize--;
+        computerTotal += draw(deckValue, deckSize, "Computer");
+        deckSize--;
 
         while(isRunning){
 
-            playerTotal += draw(deck, deckSize);
-            deckSize--;
-            playerTotal += draw(deck, deckSize);
-            deckSize--;
-            computerTotal += draw(deck, deckSize);
-            deckSize--;
-            computerTotal += draw(deck, deckSize);
-            deckSize--;
+            System.out.println(player1 + "'s total: " + player1Total);
+            System.out.println(player2 + "'s total: " + player2Total);
+            System.out.println(player3 + "'s total: " + player3Total);
+            System.out.println("Computer's total: " + computerTotal);
 
-            System.out.println("Your total: " + playerTotal);
-            System.out.println("Dealer's total: " + computerTotal);
-
-            if (hasWon(playerTotal, computerTotal) == 1){
+            if (hasWon(player1Total, computerTotal) == 1){
                 System.out.println("Player won");
                 isRunning = false;
-            } else if(hasWon(playerTotal, computerTotal) == -1){
-                System.out.println("Dealer won");
+            } else if(hasWon(player1Total, computerTotal) == -1){
+                System.out.println("Computer won");
                 isRunning = false;
             }
 
@@ -120,9 +136,6 @@ public class TwentyOne {
             input.nextLine();
 
         }
-
-        System.out.println("♥♦♣♠" );
-
 
     }
 }
