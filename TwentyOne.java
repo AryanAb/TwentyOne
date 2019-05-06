@@ -1,3 +1,9 @@
+/**
+ * TwentyOne.java
+ * Aryan Abed-Esfahani and Joon Kim
+ * May 6th 2019
+ * Game of 21 (Get 21 points on first two cards)
+ */
 import java.util.Scanner;
 public class TwentyOne {
   
@@ -83,7 +89,8 @@ public class TwentyOne {
     // remove the element(card) chosen from the array(deck)
     remove(deckNum, index);
     
-    if(index <= 3) { // if the card is an Ace
+    // if the card is an Ace, print the Ace with corresponding suits
+    if(index <= 3) { 
       
       if (index % 4 == 0) {
         System.out.println(name + "'s card: Ace of clubs");
@@ -99,7 +106,9 @@ public class TwentyOne {
       
       return input.nextInt();
       
-    }else if(index < 40) { // if it is a non-face card
+    }
+    // else if the card is a non-face card, print the card number and suit
+    else if(index < 40) { 
       
       if (index % 4 == 0) {
         System.out.println(name + "'s card: " + card + " of clubs");
@@ -111,7 +120,9 @@ public class TwentyOne {
         System.out.println(name + "'s card: " + card + " of spades");
       }
       
-    } else if(index >= 40 && index <= 43){ // if it is a King
+    } 
+    // else if the card is a King card, print King and suit
+    else if(index >= 40 && index <= 43){ 
       
       if (index % 4 == 0) {
         System.out.println(name + "'s card: King of clubs");
@@ -123,7 +134,9 @@ public class TwentyOne {
         System.out.println(name + "'s card: King of spades");
       }
       
-    } else if(index >= 44 && index <= 47){ // if it is a Queen
+    } 
+    // else if the card is a Queen card, print Queen and suit
+    else if(index >= 44 && index <= 47){ 
       
       if (index % 4 == 0) {
         System.out.println(name + "'s card: Queen of clubs");
@@ -135,9 +148,11 @@ public class TwentyOne {
         System.out.println(name + "'s card: Queen of spades");
       }
       
-    } else {
+    } 
+    // else the card is a Jack card, print Jack and suit
+    else {
       
-      if (index % 4 == 0) { // if it is Jack
+      if (index % 4 == 0) {
         System.out.println(name + "'s card: Jack of clubs");
       } else if (index % 4 == 1) {
         System.out.println(name + "'s card: Jack of diamonds");
@@ -184,14 +199,14 @@ public class TwentyOne {
       10, 10, 10, 10};
     
     
-    // put the code to draw first to cards here and then put the code to the code for the game n the while loop
-    
+    //Greet the player and give them and option to play or read the instruction first
+    System.out.println("Welcome to game of TwentyOne!");
     System.out.println("1. Play");
     System.out.println("2. How To Play");
     
     int option = input.nextInt();
     
-    //How to play 21
+    //If the player chooses "how to play" print the rules of the game
     if(option == 2) {
       
       System.out.println("Get 21 points on first two cards.");
@@ -205,7 +220,7 @@ public class TwentyOne {
     
     input.nextLine();
     
-    //Name of the player
+    //Ask the players to input their names
     System.out.print("Player 1 name: ");
     String player1 = input.nextLine();
     System.out.print("Player 2 name: ");
@@ -231,13 +246,13 @@ public class TwentyOne {
     computerTotal += draw(deckValue, deckSize, "Computer");
     deckSize--;
     
-    //Display the total
+    //Display the total score of first two cards
     System.out.println(player1 + "'s total: " + player1Total);
     System.out.println(player2 + "'s total: " + player2Total);
     System.out.println(player3 + "'s total: " + player3Total);
     System.out.println("Computer's total: " + computerTotal);
     
-    //Display the winner
+    //Display the winner if any player got 21 in their first two cards
     if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 0){
       System.out.println("Draw");
       isRunning = false;
@@ -255,10 +270,10 @@ public class TwentyOne {
       isRunning = false;
     }
     
-    //While there is no winner
+    //While there is no winner in first two cards
     while(isRunning){
       
-      //If player1 is still playing
+      //If player1 is still in the game, give player 1 to skip or draw
       if(player1Playing) {
         
         System.out.println(player1 + "'s Turn");
@@ -266,7 +281,7 @@ public class TwentyOne {
         
         option = input.nextInt();
         
-        //player1 draws one more card
+        //If player 1 chooses to draw, one more card given to player 1
         if (option == 2) {
           player1Total += draw(deckValue, deckSize, player1);
           deckSize--;
@@ -274,7 +289,7 @@ public class TwentyOne {
         
       }
       
-      //If player2 is still playing
+      //If player2 is still in the game, give player2 to skip or draw
       if(player2Playing) {
         
         System.out.println(player2 + "'s Turn");
@@ -282,7 +297,7 @@ public class TwentyOne {
         
         option = input.nextInt();
         
-        //player2 draws one more card
+        //If player2 chooses to draw, one more card given to player 2
         if (option == 2) {
           player2Total += draw(deckValue, deckSize, player2);
           deckSize--;
@@ -290,7 +305,7 @@ public class TwentyOne {
         
       }
       
-      //If player3 is stil playing
+      //If player3 is still in the game, give player 3 to skip or draw
       if(player3Playing) {
         
         System.out.println(player3 + "'s Turn");
@@ -298,7 +313,7 @@ public class TwentyOne {
         
         option = input.nextInt();
         
-        //player 3 draws one more card
+        //If player 3 chooses to draw, one more card given to player 3
         if (option == 2) {
           player3Total += draw(deckValue, deckSize, player3);
           deckSize--;
@@ -306,12 +321,11 @@ public class TwentyOne {
         
       }
       
-      //If computer is still playing
+      //If computer is still in game, computer draws one more card
       if(computerPlaying) {
         
         System.out.println("Computer's Turn");
         
-        //Computer draws one more card
         computerTotal += draw(deckValue, deckSize, "Computer");
         deckSize--;
         
@@ -320,7 +334,7 @@ public class TwentyOne {
       System.out.println("Press Enter to continue...");
       input.nextLine();
       
-      //Elimination
+      //If players' total scores are greater than 21, eliminate them
       if(player1Total > 21){
         player1Playing = false;
         System.out.println(player1 + " is eliminated");
@@ -338,7 +352,7 @@ public class TwentyOne {
         System.out.println("Computer is eliminated");
       }
       
-      
+      //Print 
       System.out.println(player1 + "'s total: " + player1Total);
       System.out.println(player2 + "'s total: " + player2Total);
       System.out.println(player3 + "'s total: " + player3Total);
