@@ -1,3 +1,4 @@
 1. If both pass, the higher one wins
 2. Make the computer think
 3. Read abd write into .txt files
+4. Drawing the first 2 cards then ask if you want it to be 11 or 1
