@@ -64,87 +64,94 @@ public class TwentyOne {
     return -1;
     
   }
-  
+
+/** This method chooses(draws) an element(card) form an array(deck)
+     * @param deckNum is the array that an element is being chosen from.
+     * @param deckSize is the size of the array
+     * @param name is the name of the player who is drawing
+     * @return the element(value of the card chosen)
+     */
   public static int draw(int[] deckNum, int deckSize, String name){
-    
-    Scanner input = new Scanner(System.in);
-    
-    int index = (int) (Math.random()*deckSize - 1);
-    int card = deckNum[index];
-    
-    remove(deckNum, index);
-    
-    if(index <= 3) {
-      
-      if (index % 4 == 0) {
-        System.out.println(name + "'s card: Ace of clubs");
-      } else if (index % 4 == 1) {
-        System.out.println(name + "'s card: Ace of diamonds");
-      } else if (index % 4 == 2) {
-        System.out.println(name + "'s card: Ace of hearts");
+
+      Scanner input = new Scanner(System.in);
+
+      // generate a random number
+      int index = (int) (Math.random()*deckSize - 1);
+      // get the value of the card drawn
+      int card = deckNum[index];
+
+      // remove the element(card) chosen from the array(deck)
+      remove(deckNum, index);
+
+      if(index <= 3) { // if the card is an Ace
+
+          if (index % 4 == 0) {
+              System.out.println(name + "'s card: Ace of clubs");
+          } else if (index % 4 == 1) {
+              System.out.println(name + "'s card: Ace of diamonds");
+          } else if (index % 4 == 2) {
+              System.out.println(name + "'s card: Ace of hearts");
+          } else {
+              System.out.println(name + "'s card: Ace of spades");
+          }
+
+          System.out.println("Do you want the value to be 1 or 11?");
+
+          return input.nextInt();
+
+      }else if(index < 40) { // if it is a non-face card
+
+          if (index % 4 == 0) {
+              System.out.println(name + "'s card: " + card + " of clubs");
+          } else if (index % 4 == 1) {
+              System.out.println(name + "'s card: " + card + " of diamonds");
+          } else if (index % 4 == 2) {
+              System.out.println(name + "'s card: " + card + " of hearts");
+          } else {
+              System.out.println(name + "'s card: " + card + " of spades");
+          }
+
+      } else if(index >= 40 && index <= 43){ // if it is a King
+
+          if (index % 4 == 0) {
+              System.out.println(name + "'s card: King of clubs");
+          } else if (index % 4 == 1) {
+              System.out.println(name + "'s card: King of diamonds");
+          } else if (index % 4 == 2) {
+              System.out.println(name + "'s card: King of hearts");
+          } else {
+              System.out.println(name + "'s card: King of spades");
+          }
+
+      } else if(index >= 44 && index <= 47){ // if it is a Queen
+
+          if (index % 4 == 0) {
+              System.out.println(name + "'s card: Queen of clubs");
+          } else if (index % 4 == 1) {
+              System.out.println(name + "'s card: Queen of diamonds");
+          } else if (index % 4 == 2) {
+              System.out.println(name + "'s card: Queen of hearts");
+          } else {
+              System.out.println(name + "'s card: Queen of spades");
+          }
+
       } else {
-        System.out.println(name + "'s card: Ace of spades");
+
+          if (index % 4 == 0) { // if it is Jack
+              System.out.println(name + "'s card: Jack of clubs");
+          } else if (index % 4 == 1) {
+              System.out.println(name + "'s card: Jack of diamonds");
+          } else if (index % 4 == 2) {
+              System.out.println(name + "'s card: Jack of hearts");
+          } else {
+              System.out.println(name + "'s card: Jack of spades");
+          }
+
       }
-      
-      System.out.println("Do you want the value to be 1 or 11?");
-      
-      int val = input.nextInt();
-      return val;
-      
-    }
-    
-    else if(index < 40) {
-      
-      if (index % 4 == 0) {
-        System.out.println(name + "'s card: " + card + " of clubs");
-      } else if (index % 4 == 1) {
-        System.out.println(name + "'s card: " + card + " of diamonds");
-      } else if (index % 4 == 2) {
-        System.out.println(name + "'s card: " + card + " of hearts");
-      } else {
-        System.out.println(name + "'s card: " + card + " of spades");
-      }
-      
-    } else if(index >= 40 && index <= 43){
-      
-      if (index % 4 == 0) {
-        System.out.println(name + "'s card: King of clubs");
-      } else if (index % 4 == 1) {
-        System.out.println(name + "'s card: King of diamonds");
-      } else if (index % 4 == 2) {
-        System.out.println(name + "'s card: King of hearts");
-      } else {
-        System.out.println(name + "'s card: King of spades");
-      }
-      
-    } else if(index >= 44 && index <= 47){
-      
-      if (index % 4 == 0) {
-        System.out.println(name + "'s card: Queen of clubs");
-      } else if (index % 4 == 1) {
-        System.out.println(name + "'s card: Queen of diamonds");
-      } else if (index % 4 == 2) {
-        System.out.println(name + "'s card: Queen of hearts");
-      } else {
-        System.out.println(name + "'s card: Queen of spades");
-      }
-      
-    } else {
-      
-      if (index % 4 == 0) {
-        System.out.println(name + "'s card: Jack of clubs");
-      } else if (index % 4 == 1) {
-        System.out.println(name + "'s card: Jack of diamonds");
-      } else if (index % 4 == 2) {
-        System.out.println(name + "'s card: Jack of hearts");
-      } else {
-        System.out.println(name + "'s card: Jack of spades");
-      }
-      
-    }
-    
-    return card;
-    
+
+      // return the value of the card
+      return card;
+
   }
   
   public static void main(String[] args){
