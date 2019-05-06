@@ -352,44 +352,54 @@ public class TwentyOne {
         System.out.println("Computer is eliminated");
       }
       
-      //Print 
+      //Print total score of players after each player's turns are completed
       System.out.println(player1 + "'s total: " + player1Total);
       System.out.println(player2 + "'s total: " + player2Total);
       System.out.println(player3 + "'s total: " + player3Total);
       System.out.println("Computer's total: " + computerTotal);
       
+      //if there are multiple winners, print draw
       if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 0){
         System.out.println("Draw");
         isRunning = false;
-      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 1){
+      } 
+      //else if player1 wins by getting 21, print player 1 has won
+      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 1){
         System.out.println(player1 + " has won!");
         isRunning = false;
-      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 2){
+      }
+      //else if player2 wins by getting 21, print player 2 has won
+      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 2){
         System.out.println(player2 + " has won!");
         isRunning = false;
-      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 3){
+      } 
+      //else if player3 wins by getting 21, print player 3 has won
+      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 3){
         System.out.println(player3 + " has won!");
         isRunning = false;
-      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 4){
+      } 
+      //else if computer wins by getting 21, print computer has won
+      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 4){
         System.out.println("Computer has won!");
         isRunning = false;
       }
       
+      //If everyone but one player is eliminated, print surviving player has won since everyone else is eliminated
       if(player1Playing && !player2Playing && !player3Playing && !computerPlaying){
         System.out.println(player1 + " has won! because others were eliminated");
         isRunning = false;
       } else if(player2Playing && !player1Playing && !player3Playing && !computerPlaying){
-        System.out.println(player2 + " has won! because others were eliminated\"");
+        System.out.println(player2 + " has won! because others were eliminated");
         isRunning = false;
       } else if(player3Playing && !player1Playing && !player2Playing && !computerPlaying) {
-        System.out.println(player3 + " has won! because others were eliminated\"");
+        System.out.println(player3 + " has won! because others were eliminated");
         isRunning = false;
       } else if(computerPlaying && !player1Playing && !player2Playing && !player3Playing) {
-        System.out.println("Computer has won! because others were eliminated\"");
+        System.out.println("Computer has won! because others were eliminated");
         isRunning = false;
       }
       
-      //If there are no cards left
+      //If there are no cards left, print the player with highest score as a winner
       if(deckSize == 0){
         System.out.println("No cards left");
         if(player1Total > player2Total && player1Total > player3Total && player1Total > computerTotal){
