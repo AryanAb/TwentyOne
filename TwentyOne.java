@@ -73,8 +73,7 @@ public class TwentyOne {
 
             System.out.println("Do you want the value to be 1 or 11?");
 
-            int val = input.nextInt();
-             return val;
+            return input.nextInt();
 
         }
 
@@ -319,17 +318,17 @@ public class TwentyOne {
                 isRunning = false;
             }
 
-            if(player1Playing == true && player2Playing == false && player3Playing == false && computerPlaying == false){
-                System.out.println(player1 + " has won! because others were eliminated");
+            if(player1Playing && !player2Playing && !player3Playing && !computerPlaying){
+                System.out.println(player1 + " has won!");
                 isRunning = false;
-            } else if(player2Playing == true && player1Playing == false && player3Playing == false && computerPlaying == false){
-                System.out.println(player2 + " has won! because others were eliminated\"");
+            } else if(player2Playing&& !player1Playing && !player3Playing && !computerPlaying){
+                System.out.println(player2 + " has won!");
                 isRunning = false;
-            } else if(player3Playing == true && player1Playing == false && player2Playing == false && computerPlaying == false) {
-                System.out.println(player3 + " has won! because others were eliminated\"");
+            } else if(player3Playing && !player1Playing && !player2Playing && !computerPlaying) {
+                System.out.println(player3 + " has won!");
                 isRunning = false;
-            } else if(computerPlaying == true && player1Playing == false && player2Playing == false && player3Playing == false) {
-                System.out.println("Computer has won! because others were eliminated\"");
+            } else if(computerPlaying && !player1Playing && !player2Playing && !player3Playing) {
+                System.out.println("Computer has won!");
                 isRunning = false;
             }
 
