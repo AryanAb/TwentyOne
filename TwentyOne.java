@@ -17,7 +17,7 @@ public class TwentyOne {
     
   }
   
-  /*returns 1 if player won. returns -1 if computer won. returns 0 if none won.
+ /*returns  integer (1~3) if player won. returns 4 if computer won. returns 0 if none won.
    * @param player1Score          Score of player1
    * @param player2Score          Score of player2
    * @param player3Score          Score of player3
@@ -29,39 +29,48 @@ public class TwentyOne {
     //initialize count to 0
     int count = 0;
     
+    //If player1 gets 21, add 1 to count
     if(player1Score == 21){
       count++;
     }
+    //If player2 gets 21, add 1 to count
     if(player2Score == 21){
       count++;
     }
+    //If player3 gets 21, add 1 to count
     if(player3Score == 21){
       count++;
     }
+    //If computer gets 21, add 1 to count
     if(computerScore == 21){
       count++;
     }
     
+    //If count is greater than 1, return 0 (draw)
     if(count > 1){
       return 0;
     } else {
       
+      //If player1 gets 21, return 1
       if(player1Score == 21){
         return 1;
       }
+      //If player2 gets 21, return 2
       else if(player2Score == 21){
         return 2;
       }
+      //If player3 gets 21, return 3
       else if(player3Score == 21) {
         return 3;
       }
+      //If computer gets 21, return 4
       else  if(computerScore == 21){
         return 4;
       }
       
     }
-    
-    return -1;
+    //If no one won, return 0
+    return 0;
     
   }
 
