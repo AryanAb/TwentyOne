@@ -72,7 +72,7 @@ public class TwentyOne {
     * @param name is the name of the player who is drawing
     * @return the element(value of the card chosen)
     */
-  public static int draw(int[] deckNum, int deckSize, String name){
+  public static int draw(int[] deckNum, int deckSize, String name, int computerTotal){
     
     Scanner input = new Scanner(System.in);
     
@@ -96,9 +96,16 @@ public class TwentyOne {
         System.out.println(name + "'s card: Ace of spades");
       }
       
+      if (name.compareTo("Computer")==0){
+        if(computerTotal>10){
+          return 1;
+        }else{
+          return 11;
+        }
+      }else{
       System.out.println("Do you want the value to be 1 or 11?");
-      
       return input.nextInt();
+      }
       
     }else if(index < 40) { // if it is a non-face card
       
@@ -155,33 +162,32 @@ public class TwentyOne {
     
   }
   
+  
+  
   public static void main(String[] args)throws IOException{
     Scanner input = new Scanner (System.in);
     
-    int deckSize = 51;
-    int player1Total = 0;
-    int player2Total = 0;
-    int player3Total = 0;
-    int computerTotal = 0;
-    boolean player1Playing = true;
-    boolean player2Playing = true;
-    boolean player3Playing = true;
-    boolean computerPlaying = true;
-    boolean isRunning = true;
     String winner = "";
     char inPlay = 'y';
     
-    int numPlayer = 3;
-    
-    String path = "C:/Users/aryan/Twenty-One.txt";
-    
-    File myFile = new File(path);
-    
+    int numPlayer = 3; 
+    String path = "TwentyOne.txt";  
+    File myFile = new File(path); 
     if(!myFile.isFile()){
       PrintWriter writer = new PrintWriter(path, "UTF-8");
     }
     
     while (inPlay == 'y'){
+      int deckSize = 51;
+      int player1Total = 0;
+      int player2Total = 0;
+      int player3Total = 0;
+      int computerTotal = 0;
+      boolean player1Playing = true;
+      boolean player2Playing = true;
+      boolean player3Playing = true;
+      boolean computerPlaying = true;
+      boolean isRunning = true;
       int[] deckValue =   {1, 1, 1, 1,
         2, 2, 2, 2,
         3, 3, 3, 3,
@@ -223,21 +229,21 @@ public class TwentyOne {
       System.out.print("Player 3 name: ");
       String player3 = input.nextLine();
       
-      player1Total += draw(deckValue, deckSize, player1);
+      player1Total += draw(deckValue, deckSize, player1,computerTotal);
       deckSize--;
-      player2Total += draw(deckValue, deckSize, player2);
+      player2Total += draw(deckValue, deckSize, player2,computerTotal);
       deckSize--;
-      player3Total += draw(deckValue, deckSize, player3);
+      player3Total += draw(deckValue, deckSize, player3,computerTotal);
       deckSize--;
-      computerTotal += draw( deckValue, deckSize, "Computer");
+      computerTotal += draw( deckValue, deckSize, "Computer", computerTotal);
       deckSize--;
-      player1Total += draw(deckValue, deckSize, player1);
+      player1Total += draw(deckValue, deckSize, player1,computerTotal);
       deckSize--;
-      player2Total += draw(deckValue, deckSize, player2);
+      player2Total += draw(deckValue, deckSize, player2,computerTotal);
       deckSize--;
-      player3Total += draw(deckValue, deckSize, player3);
+      player3Total += draw(deckValue, deckSize, player3,computerTotal);
       deckSize--;
-      computerTotal += draw(deckValue, deckSize, "Computer");
+      computerTotal += draw(deckValue, deckSize, "Computer", computerTotal);
       deckSize--;
       
       System.out.println(player1 + "'s total: " + player1Total);
@@ -248,18 +254,23 @@ public class TwentyOne {
       if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 0){
         System.out.println("Draw");
         isRunning = false;
+        winner = "Draw";
       } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 1){
         System.out.println(player1 + " has won!");
         isRunning = false;
+        winner = player1;
       } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 2){
         System.out.println(player2 + " has won!");
         isRunning = false;
+        winner = player2;
       } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 3){
         System.out.println(player3 + " has won!");
         isRunning = false;
+        winner = player3;
       } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 4){
         System.out.println("Computer has won!");
         isRunning = false;
+        winner = "Computer";
       }
       
       while(isRunning){
@@ -274,7 +285,7 @@ public class TwentyOne {
           option = input.nextInt();
           
           if (option == 2) {
-            player1Total += draw(deckValue, deckSize, player1);
+            player1Total += draw(deckValue, deckSize, player1, computerTotal);
             deckSize--;
           } else{
             count++;
@@ -290,7 +301,7 @@ public class TwentyOne {
           option = input.nextInt();
           
           if (option == 2) {
-            player2Total += draw(deckValue, deckSize, player2);
+            player2Total += draw(deckValue, deckSize, player2, computerTotal);
             deckSize--;
           } else{
             count++;
@@ -306,7 +317,7 @@ public class TwentyOne {
           option = input.nextInt();
           
           if (option == 2) {
-            player3Total += draw(deckValue, deckSize, player3);
+            player3Total += draw(deckValue, deckSize, player3,computerTotal);
             deckSize--;
           } else{
             count++;
@@ -318,7 +329,7 @@ public class TwentyOne {
           
           System.out.println("Computer's Turn");
           
-          computerTotal += draw(deckValue, deckSize, "Computer");
+          computerTotal += draw(deckValue, deckSize, "Computer",computerTotal);
           deckSize--;
           
         }
@@ -415,15 +426,19 @@ public class TwentyOne {
             System.out.println("Draw");
             isRunning = false;
           }
-        }
-        inPlay = Character.toLowerCase(input.next().charAt(0));
-        while (inPlay !='y' && inPlay !='n'){
-          System.out.println("Please answer again by responding in y or n"); //Ask the user to input their will to play or not correctly
-          inPlay = Character.toLowerCase(input.next().charAt(0));
-        }
+        }//end if deckSize is 0
+        
       }
+      System.out.println("Congratulations! " + winner + " Would you like to play again? (yes/no)");
+      inPlay = Character.toLowerCase(input.next().charAt(0));
+      while (inPlay !='y' && inPlay !='n'){
+        System.out.println("Please answer again by responding in y or n"); //Ask the user to input their will to play or not correctly
+        inPlay = Character.toLowerCase(input.next().charAt(0));
+      }//while inplay is invalid
       
-      System.out.println("Thanks for playing");
+      if (inPlay == 'n'){
+        System.out.println("Thanks for playing");
+      }
       
       Date date = new Date();
       
@@ -441,10 +456,9 @@ public class TwentyOne {
       out.println("_________________________________________________________________________________");
       out.close();
       
+      
     }
     
   }
 }
-
-
 
