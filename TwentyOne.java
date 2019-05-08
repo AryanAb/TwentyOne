@@ -12,7 +12,6 @@ public class TwentyOne {
    * @param removeIndex   Index of the element that is going to be removed
    */
   
-  
   public static void remove(int[] array, int removeIndex){
     
     // Removes the element with removeIndex and copies the rest of the array by using for loop
@@ -108,7 +107,7 @@ public class TwentyOne {
         aceValue = input.nextInt();
       }
       return aceValue;
-        
+      
     }
     // else if the card is a non-face card, print the card number and suit
     else if(index < 40) { 
@@ -186,260 +185,269 @@ public class TwentyOne {
     boolean player3Playing = true;
     boolean computerPlaying = true;
     boolean isRunning = true;
+    char inPlay = 'y';
     
-    int[] deckValue =   {1, 1, 1, 1,
-      2, 2, 2, 2,
-      3, 3, 3, 3,
-      4, 4, 4, 4,
-      5, 5, 5, 5,
-      6, 6, 6, 6,
-      7, 7, 7, 7,
-      8, 8, 8, 8,
-      9, 9, 9, 9,
-      10, 10, 10, 10,
-      10, 10, 10, 10,
-      10, 10, 10, 10,
-      10, 10, 10, 10};
-    
-    
-    //Greet the player and give them and option to play or read the instruction first
-    System.out.println("Welcome to game of TwentyOne!");
-    System.out.println("1. Play");
-    System.out.println("2. How To Play");
-    
-    int option = input.nextInt();
-    
-    //If the player chooses "how to play" print the rules of the game
-    while (option !=1 && option!=2){
-      System.out.println("Invalid input. Please enter 1 or 2");
-      option= input.nextInt();
-    }  
-    if (option == 1){
-      System.out.println("Let's begin!");
-    }
-    else if(option == 2) {
+    while (inPlay == 'y'){
+      int[] deckValue =   {1, 1, 1, 1,
+        2, 2, 2, 2,
+        3, 3, 3, 3,
+        4, 4, 4, 4,
+        5, 5, 5, 5,
+        6, 6, 6, 6,
+        7, 7, 7, 7,
+        8, 8, 8, 8,
+        9, 9, 9, 9,
+        10, 10, 10, 10,
+        10, 10, 10, 10,
+        10, 10, 10, 10,
+        10, 10, 10, 10};
       
-      System.out.println("Get 21 points on first two cards.");
-      System.out.println("If the sum is less than 21, player can decide to draw one more card or skip(pass)");
-      System.out.println("Reach a final score higher than the dealer (computer) without exceeding 21");
-      System.out.println("Let the dealer draw additional cards until their hand exceeds 21");
-      System.out.println("Press Enter to play");
+      
+      //Greet the player and give them and option to play or read the instruction first
+      System.out.println("Welcome to game of TwentyOne!");
+      System.out.println("1. Play");
+      System.out.println("2. How To Play");
+      
+      int option = input.nextInt();
+      
+      //If the player chooses "how to play" print the rules of the game
+      while (option !=1 && option!=2){
+        System.out.println("Invalid input. Please enter 1 or 2");
+        option= input.nextInt();
+      }  
+      if (option == 1){
+        System.out.println("Let's begin!");
+      }
+      else if(option == 2) {
+        
+        System.out.println("Get 21 points on first two cards.");
+        System.out.println("If the sum is less than 21, player can decide to draw one more card or skip(pass)");
+        System.out.println("Reach a final score higher than the dealer (computer) without exceeding 21");
+        System.out.println("Let the dealer draw additional cards until their hand exceeds 21");
+        System.out.println("Press Enter to play");
+        input.nextLine();
+        
+      }
+      
       input.nextLine();
       
-    }
-    
-    input.nextLine();
-    
-    //Ask the players to input their names
-    System.out.print("Player 1 name: ");
-    String player1 = input.nextLine();
-    System.out.print("Player 2 name: ");
-    String player2 = input.nextLine();
-    System.out.print("Player 3 name: ");
-    String player3 = input.nextLine();
-    
-    //Draw two cards for each player and calculate the total
-    player1Total += draw(deckValue, deckSize, player1);
-    deckSize--;
-    player2Total += draw(deckValue, deckSize, player2);
-    deckSize--;
-    player3Total += draw(deckValue, deckSize, player3);
-    deckSize--;
-    computerTotal += draw( deckValue, deckSize, "Computer");
-    deckSize--;
-    player1Total += draw(deckValue, deckSize, player1);
-    deckSize--;
-    player2Total += draw(deckValue, deckSize, player2);
-    deckSize--;
-    player3Total += draw(deckValue, deckSize, player3);
-    deckSize--;
-    computerTotal += draw(deckValue, deckSize, "Computer");
-    deckSize--;
-    
-    //Display the total score of first two cards
-    System.out.println();
-    System.out.println("Total");
-    System.out.println(player1 + "'s total: " + player1Total);
-    System.out.println(player2 + "'s total: " + player2Total);
-    System.out.println(player3 + "'s total: " + player3Total);
-    System.out.println("Computer's total: " + computerTotal);
-    
-    //Display the winner if any player got 21 in their first two cards
-    if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 0){
-      System.out.println("Draw");
-      isRunning = false;
-    } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 1){
-      System.out.println(player1 + " has won!");
-      isRunning = false;
-    } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 2){
-      System.out.println(player2 + " has won!");
-      isRunning = false;
-    } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 3){
-      System.out.println(player3 + " has won!");
-      isRunning = false;
-    } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 4){
-      System.out.println("Computer has won!");
-      isRunning = false;
-    }
-    
-    //While there is no winner in first two cards
-    while(isRunning){
+      //Ask the players to input their names
+      System.out.print("Player 1 name: ");
+      String player1 = input.nextLine();
+      System.out.print("Player 2 name: ");
+      String player2 = input.nextLine();
+      System.out.print("Player 3 name: ");
+      String player3 = input.nextLine();
       
-      //If player1 is still in the game, give player 1 to skip or draw
-      if(player1Playing) {
-        
-        System.out.println(player1 + "'s Turn");
-        System.out.println("Press 1 to skip. Press 2 to draw");
-        
-        option = input.nextInt();
-        
-        if (option == 1 ){
-          System.out.println("Skipped!");
-        }
-        //If player 1 chooses to draw, one more card given to player 1
-        else if (option == 2) {
-          player1Total += draw(deckValue, deckSize, player1);
-          deckSize--;
-        }
-        
-      }
+      //Draw two cards for each player and calculate the total
+      player1Total += draw(deckValue, deckSize, player1);
+      deckSize--;
+      player2Total += draw(deckValue, deckSize, player2);
+      deckSize--;
+      player3Total += draw(deckValue, deckSize, player3);
+      deckSize--;
+      computerTotal += draw( deckValue, deckSize, "Computer");
+      deckSize--;
+      player1Total += draw(deckValue, deckSize, player1);
+      deckSize--;
+      player2Total += draw(deckValue, deckSize, player2);
+      deckSize--;
+      player3Total += draw(deckValue, deckSize, player3);
+      deckSize--;
+      computerTotal += draw(deckValue, deckSize, "Computer");
+      deckSize--;
       
-      //If player2 is still in the game, give player2 to skip or draw
-      if(player2Playing) {
-        
-        System.out.println(player2 + "'s Turn");
-        System.out.println("Press 1 to skip. Press 2 to draw");
-        
-        option = input.nextInt();
-        if (option == 1 ){
-          System.out.println("Skipped!");
-        }       
-        //If player2 chooses to draw, one more card given to player 2
-        if (option == 2) {
-          player2Total += draw(deckValue, deckSize, player2);
-          deckSize--;
-        }
-        
-      }
-      
-      //If player3 is still in the game, give player 3 to skip or draw
-      if(player3Playing) {
-        
-        System.out.println(player3 + "'s Turn");
-        System.out.println("Press 1 to skip. Press 2 to draw");
-        
-        option = input.nextInt();
-        if (option == 1 ){
-          System.out.println("Skipped!");
-        }       
-        //If player 3 chooses to draw, one more card given to player 3
-        if (option == 2) {
-          player3Total += draw(deckValue, deckSize, player3);
-          deckSize--;
-        }
-        
-      }
-      
-      //If computer is still in game, computer draws one more card
-      if(computerPlaying) {
-        
-        System.out.println("Computer's Turn");
-        
-        computerTotal += draw(deckValue, deckSize, "Computer");
-        deckSize--;
-        
-      }
-      
-      System.out.println("Press Enter to continue...");
-      input.nextLine();
-      
-      //If players' total scores are greater than 21, eliminate them
-      if(player1Total > 21){
-        player1Playing = false;
-        System.out.println(player1 + " is eliminated");
-      }
-      if(player2Total > 21){
-        player2Playing = false;
-        System.out.println(player2 + " is eliminated");
-      }
-      if(player3Total > 21){
-        player3Playing = false;
-        System.out.println(player3 + " is eliminated");
-      }
-      if(computerTotal > 21){
-        computerPlaying = false;
-        System.out.println("Computer is eliminated");
-      }
-      
-      //Print total score of players after each player's turns are completed
+      //Display the total score of first two cards
+      System.out.println();
+      System.out.println("Total");
       System.out.println(player1 + "'s total: " + player1Total);
       System.out.println(player2 + "'s total: " + player2Total);
       System.out.println(player3 + "'s total: " + player3Total);
       System.out.println("Computer's total: " + computerTotal);
       
-      //if there are multiple winners, print draw
+      //Display the winner if any player got 21 in their first two cards
       if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 0){
         System.out.println("Draw");
         isRunning = false;
-      } 
-      //else if player1 wins by getting 21, print player 1 has won
-      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 1){
+      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 1){
         System.out.println(player1 + " has won!");
         isRunning = false;
-      }
-      //else if player2 wins by getting 21, print player 2 has won
-      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 2){
+      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 2){
         System.out.println(player2 + " has won!");
         isRunning = false;
-      } 
-      //else if player3 wins by getting 21, print player 3 has won
-      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 3){
+      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 3){
         System.out.println(player3 + " has won!");
         isRunning = false;
-      } 
-      //else if computer wins by getting 21, print computer has won
-      else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 4){
+      } else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 4){
         System.out.println("Computer has won!");
         isRunning = false;
       }
       
-      //If everyone but one player is eliminated, print surviving player has won since everyone else is eliminated
-      if(player1Playing && !player2Playing && !player3Playing && !computerPlaying){
-        System.out.println(player1 + " has won! because others were eliminated");
-        isRunning = false;
-      } else if(player2Playing && !player1Playing && !player3Playing && !computerPlaying){
-        System.out.println(player2 + " has won! because others were eliminated");
-        isRunning = false;
-      } else if(player3Playing && !player1Playing && !player2Playing && !computerPlaying) {
-        System.out.println(player3 + " has won! because others were eliminated");
-        isRunning = false;
-      } else if(computerPlaying && !player1Playing && !player2Playing && !player3Playing) {
-        System.out.println("Computer has won! because others were eliminated");
-        isRunning = false;
-      }
-      
-      //If there are no cards left, print the player with highest score as a winner
-      if(deckSize == 0){
-        System.out.println("No cards left");
-        if(player1Total > player2Total && player1Total > player3Total && player1Total > computerTotal){
-          System.out.println(player1 + " has won!");
-          isRunning = false;
-        } else if(player2Total > player1Total && player2Total > player3Total && player2Total > computerTotal){
-          System.out.println(player2 + " has won!");
-          isRunning = false;
-        } else if(player3Total > player1Total && player3Total > player2Total && player3Total > computerTotal){
-          System.out.println(player3 + " has won!");
-          isRunning = false;
-        } else if(computerTotal > player1Total && computerTotal > player2Total && computerTotal > player3Total){
-          System.out.println("Computer has won!");
-          isRunning = false;
-        } else {
+      //While there is no winner in first two cards
+      while(isRunning){
+        
+        //If player1 is still in the game, give player 1 to skip or draw
+        if(player1Playing) {
+          
+          System.out.println(player1 + "'s Turn");
+          System.out.println("Press 1 to skip. Press 2 to draw");
+          
+          option = input.nextInt();
+          
+          if (option == 1 ){
+            System.out.println("Skipped!");
+          }
+          //If player 1 chooses to draw, one more card given to player 1
+          else if (option == 2) {
+            player1Total += draw(deckValue, deckSize, player1);
+            deckSize--;
+          }
+          
+        }
+        
+        //If player2 is still in the game, give player2 to skip or draw
+        if(player2Playing) {
+          
+          System.out.println(player2 + "'s Turn");
+          System.out.println("Press 1 to skip. Press 2 to draw");
+          
+          option = input.nextInt();
+          if (option == 1 ){
+            System.out.println("Skipped!");
+          }       
+          //If player2 chooses to draw, one more card given to player 2
+          if (option == 2) {
+            player2Total += draw(deckValue, deckSize, player2);
+            deckSize--;
+          }
+          
+        }
+        
+        //If player3 is still in the game, give player 3 to skip or draw
+        if(player3Playing) {
+          
+          System.out.println(player3 + "'s Turn");
+          System.out.println("Press 1 to skip. Press 2 to draw");
+          
+          option = input.nextInt();
+          if (option == 1 ){
+            System.out.println("Skipped!");
+          }       
+          //If player 3 chooses to draw, one more card given to player 3
+          if (option == 2) {
+            player3Total += draw(deckValue, deckSize, player3);
+            deckSize--;
+          }
+          
+        }
+        
+        //If computer is still in game, computer draws one more card
+        if(computerPlaying) {
+          
+          System.out.println("Computer's Turn");
+          
+          computerTotal += draw(deckValue, deckSize, "Computer");
+          deckSize--;
+          
+        }
+        
+        System.out.println("Press Enter to continue...");
+        input.nextLine();
+        
+        //If players' total scores are greater than 21, eliminate them
+        if(player1Total > 21){
+          player1Playing = false;
+          System.out.println(player1 + " is eliminated");
+        }
+        if(player2Total > 21){
+          player2Playing = false;
+          System.out.println(player2 + " is eliminated");
+        }
+        if(player3Total > 21){
+          player3Playing = false;
+          System.out.println(player3 + " is eliminated");
+        }
+        if(computerTotal > 21){
+          computerPlaying = false;
+          System.out.println("Computer is eliminated");
+        }
+        
+        //Print total score of players after each player's turns are completed
+        System.out.println(player1 + "'s total: " + player1Total);
+        System.out.println(player2 + "'s total: " + player2Total);
+        System.out.println(player3 + "'s total: " + player3Total);
+        System.out.println("Computer's total: " + computerTotal);
+        
+        //if there are multiple winners, print draw
+        if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 0){
           System.out.println("Draw");
           isRunning = false;
+        } 
+        //else if player1 wins by getting 21, print player 1 has won
+        else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 1){
+          System.out.println(player1 + " has won!");
+          isRunning = false;
         }
+        //else if player2 wins by getting 21, print player 2 has won
+        else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 2){
+          System.out.println(player2 + " has won!");
+          isRunning = false;
+        } 
+        //else if player3 wins by getting 21, print player 3 has won
+        else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 3){
+          System.out.println(player3 + " has won!");
+          isRunning = false;
+        } 
+        //else if computer wins by getting 21, print computer has won
+        else if(hasWon(player1Total, player2Total, player3Total, computerTotal) == 4){
+          System.out.println("Computer has won!");
+          isRunning = false;
+        }
+        
+        //If everyone but one player is eliminated, print surviving player has won since everyone else is eliminated
+        if(player1Playing && !player2Playing && !player3Playing && !computerPlaying){
+          System.out.println(player1 + " has won! because others were eliminated");
+          isRunning = false;
+        } else if(player2Playing && !player1Playing && !player3Playing && !computerPlaying){
+          System.out.println(player2 + " has won! because others were eliminated");
+          isRunning = false;
+        } else if(player3Playing && !player1Playing && !player2Playing && !computerPlaying) {
+          System.out.println(player3 + " has won! because others were eliminated");
+          isRunning = false;
+        } else if(computerPlaying && !player1Playing && !player2Playing && !player3Playing) {
+          System.out.println("Computer has won! because others were eliminated");
+          isRunning = false;
+        }
+        
+        //If there are no cards left, print the player with highest score as a winner
+        if(deckSize == 0){
+          System.out.println("No cards left");
+          if(player1Total > player2Total && player1Total > player3Total && player1Total > computerTotal){
+            System.out.println(player1 + " has won!");
+            isRunning = false;
+          } else if(player2Total > player1Total && player2Total > player3Total && player2Total > computerTotal){
+            System.out.println(player2 + " has won!");
+            isRunning = false;
+          } else if(player3Total > player1Total && player3Total > player2Total && player3Total > computerTotal){
+            System.out.println(player3 + " has won!");
+            isRunning = false;
+          } else if(computerTotal > player1Total && computerTotal > player2Total && computerTotal > player3Total){
+            System.out.println("Computer has won!");
+            isRunning = false;
+          } else {
+            System.out.println("Draw");
+            isRunning = false;
+          }
+        }
+        
+      }// end of while
+      System.out.println("Do you want to continue? (y/n)");
+      inPlay = Character.toLowerCase(input.next().charAt(0));
+      while (inPlay !='y' && inPlay !='n'){
+        System.out.println("Please answer again by responding in y or n"); //Ask the user to input their will to play or not correctly
+        inPlay = Character.toLowerCase(input.next().charAt(0));
       }
-      
-    }// end of while
+    }
     
     //Thank the user for playing
     System.out.println("Thanks for playing");
