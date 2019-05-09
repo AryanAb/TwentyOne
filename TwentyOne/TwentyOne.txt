@@ -30,3 +30,75 @@ Played at: 2019-05-08 18:51:13.888
 Players in this round: Jooon Alisa Aryan computer
 Winner of this round: Aryan
 _________________________________________________________________________________
+Played at: 2019-05-08 19:13:50.265
+Players in this round: Joon Aryan Alisa computer
+Winner of this round: Alisa
+_________________________________________________________________________________
+Played at: 2019-05-08 19:14:10.713
+Players in this round: Aryan Joon Alisa computer
+Winner of this round: Alisa
+_________________________________________________________________________________
+Played at: 2019-05-08 19:15:16.582
+Players in this round: Aryan Joon Alisa computer
+Winner of this round: Alisa
+_________________________________________________________________________________
+Played at: 2019-05-08 19:15:30.745
+Players in this round: 1 2 3 computer
+Winner of this round: 1
+_________________________________________________________________________________
+Played at: 2019-05-08 19:20:02.048
+Players in this round: 1 23 3 computer
+Winner of this round: 
+_________________________________________________________________________________
+Played at: 2019-05-08 19:20:16.917
+Players in this round: 1 2 3 computer
+Winner of this round: 1
+_________________________________________________________________________________
+Played at: 2019-05-08 19:20:44.026
+Players in this round: 1 2 3 computer
+Winner of this round: Draw
+_________________________________________________________________________________
+Played at: 2019-05-08 19:20:58.062
+Players in this round: 1 2 3 computer
+Winner of this round: 1
+_________________________________________________________________________________
+Played at: 2019-05-08 19:21:16.551
+Players in this round: 1 2 3 computer
+Winner of this round: 3
+_________________________________________________________________________________
+Played at: 2019-05-08 19:23:15.037
+Players in this round: 1 2 3 computer
+Winner of this round: 2
+_________________________________________________________________________________
+Played at: 2019-05-08 19:24:15.332
+Players in this round: Joon Alisa Aryan computer
+Winner of this round: Draw
+_________________________________________________________________________________
+Played at: 2019-05-08 19:24:30.186
+Players in this round: 1 2 3 computer
+Winner of this round: 2
+_________________________________________________________________________________
+Played at: 2019-05-08 19:24:48.379
+Players in this round: 1 2 3 computer
+Winner of this round: Draw
+_________________________________________________________________________________
+Played at: 2019-05-08 19:24:58.835
+Players in this round: 2 2 2 computer
+Winner of this round: 2
+_________________________________________________________________________________
+Played at: 2019-05-08 19:25:27.871
+Players in this round: 1 2 3 computer
+Winner of this round: 2
+_________________________________________________________________________________
+Played at: 2019-05-08 19:26:00.873
+Players in this round: 1 2 3 computer
+Winner of this round: 2
+_________________________________________________________________________________
+Played at: 2019-05-08 19:29:04.625
+Players in this round: 1 2 3 computer
+Winner of this round: 
+_________________________________________________________________________________
+Played at: 2019-05-08 19:29:22.776
+Players in this round: 1 2 3 computer
+Winner of this round: 3
+_________________________________________________________________________________
