@@ -2,3 +2,4 @@
 2. Make the computer think
 3. Read abd write into .txt files
 4. Drawing the first 2 cards then ask if you want it to be 11 or 1
+5. Doesn't go back to the menu
