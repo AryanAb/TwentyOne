@@ -194,7 +194,7 @@ public class Test {
             boolean player3Playing = true;
             boolean computerPlaying = true;
             boolean isRunning = true;
-            String winner = "";
+            String winner = "N/A";
 
             int numPlayer = 3;
 
@@ -234,7 +234,6 @@ public class Test {
 
             } else if(option == 3) {
 
-
                 if(myFile.length() == 0){
                     System.out.println("No scores recorded");
                 } else{
@@ -243,6 +242,7 @@ public class Test {
                     }
                     int numLines = lr.getLineNumber();
 
+                    System.out.println("NOTE: N/A means that round was not finished.");
                     for(int i = 2; i <= numLines; i+=4){
                         System.out.println(Files.readAllLines(Paths.get(path)).get(i).substring(22));
                     }
@@ -285,18 +285,23 @@ public class Test {
 
             if (hasWon(player1Total, player2Total, player3Total, computerTotal) == 0) {
                 System.out.println("Draw");
+                winner = "Draw";
                 isRunning = false;
             } else if (hasWon(player1Total, player2Total, player3Total, computerTotal) == 1) {
                 System.out.println(player1 + " has won!");
+                winner = player1;
                 isRunning = false;
             } else if (hasWon(player1Total, player2Total, player3Total, computerTotal) == 2) {
                 System.out.println(player2 + " has won!");
+                winner = player2;
                 isRunning = false;
             } else if (hasWon(player1Total, player2Total, player3Total, computerTotal) == 3) {
                 System.out.println(player3 + " has won!");
+                winner = player3;
                 isRunning = false;
             } else if (hasWon(player1Total, player2Total, player3Total, computerTotal) == 4) {
                 System.out.println("Computer has won!");
+                winner = "Computer";
                 isRunning = false;
             }
 
@@ -442,25 +447,30 @@ public class Test {
                 if (deckSize == 0 || count == numPlayer) {
                     if (player1Total < 22 && player1Total > player2Total && player1Total > player3Total && player1Total > computerTotal) {
                         System.out.println(player1 + " wins!");
+                        winner = player1;
                         isRunning = false;
                     } else if (player2Total < 22 && player2Total > player1Total && player2Total > player3Total && player2Total > computerTotal) {
                         System.out.println(player2 + " wins!");
+                        winner = player2;
                         isRunning = false;
                     } else if (player3Total < 22 && player3Total > player1Total && player3Total > player2Total && player3Total > computerTotal) {
                         System.out.println(player3 + " wins!");
+                        winner = player3;
                         isRunning = false;
                     } else if (computerTotal < 22 && computerTotal > player1Total && computerTotal > player2Total && computerTotal > player3Total) {
                         System.out.println("Computer wins!");
+                        winner = "Computer";
                         isRunning = false;
                     } else {
                         System.out.println("Draw");
+                        winner = "Draw";
                         isRunning = false;
                     }
                 }
 
             }
 
-            System.out.println("Congratulations! " + winner + " Would you like to play again? (yes/no)");
+            System.out.println("Congratulations " + winner + "! Would you like to play again? (yes/no)");
             inPlay = Character.toLowerCase(input.next().charAt(0));
             while (inPlay !='y' && inPlay !='n'){
                 System.out.println("Please answer again by responding in y or n"); //Ask the user to input their will to play or not correctly
