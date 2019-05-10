@@ -1,3 +1,10 @@
+/**
+ * TwentyOne.java
+ * Created by: Joon Kim, Aryan Abed
+ * May 9, 2019
+ * This is a game of twenty one which can be played with 3 players
+ */
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -7,6 +14,7 @@ import java.sql.Timestamp;
 public class TwentyOne {
 
     /** Removes an element (card) from an array (deck)
+     * Created by Aryan, Joon
      * @param array         Array that an element is being removed from
      * @param removeIndex   Index of the element that is going to be removed
      */
@@ -20,6 +28,7 @@ public class TwentyOne {
     }
 
     /** returns 1 if player won. returns -1 if computer won. returns 0 if none won.
+     * Created by Aryan, Joon
      * @param player1Score          Score of player1
      * @param player2Score          Score of player2
      * @param player3Score          Score of player3
@@ -28,23 +37,23 @@ public class TwentyOne {
      */
     public static int hasWon(int player1Score, int player2Score, int player3Score, int computerScore){
 
-        //initialize count to 0
-        int count = 0;
+        //initialize skip to 0
+        int skip = 0;
 
         if(player1Score == 21){
-            count++;
+            skip++;
         }
         if(player2Score == 21){
-            count++;
+            skip++;
         }
         if(player3Score == 21){
-            count++;
+            skip++;
         }
         if(computerScore == 21){
-            count++;
+            skip++;
         }
 
-        if(count > 1){
+        if(skip > 1){
             return 0;
         } else {
 
@@ -68,6 +77,7 @@ public class TwentyOne {
     }
 
     /** This method chooses(draws) an element(card) form an array(deck)
+     * Created by Aryan, Joon
      * @param deckNum is the array that an element is being chosen from.
      * @param deckSize is the size of the array
      * @param name is the name of the player who is drawing
@@ -156,6 +166,13 @@ public class TwentyOne {
 
     }
 
+    /**
+     * this method draws a card for the computer from the deck
+     * Created by Joon, Aryan
+     * @param deckNum is the array the card is being chosen from
+     * @param deckSize size of the deck of cards
+     * @return the value of the card chosen
+     */
     public static int computerDraw(int[] deckNum, int deckSize){
 
         // generate a random number
@@ -233,6 +250,14 @@ public class TwentyOne {
 
     }
 
+    /**
+     * this method makes the decisions for the computer
+     * Created by Joon, Aryan
+     * @param array the array the card is being chosen from
+     * @param deckSize the size of the deck of cards
+     * @param total sum of the cards of the computer
+     * @return the value of the card drawn
+     */
     public static int computerThink(int[] array, int deckSize, int total){
 
         if(total <= 14){
@@ -251,41 +276,52 @@ public class TwentyOne {
     }
 
     public static void main(String[] args)throws IOException{
-        Scanner input = new Scanner (System.in);
+
+        Scanner input = new Scanner (System.in); // initialize Scanner object
 
         char inPlay = 'y';
 
-        String path = "C:/Users/aryan/Test.txt";
+        String path = "C:/Users/aryan/Test.txt"; // path of file
 
-        System.out.println("Text file path: " + path);
+        System.out.println("Text file path: " + path); // output the path of file
 
-        File myFile = new File(path);
+        File myFile = new File(path); // crate File object
 
-        if(!myFile.isFile()){
+        if(!myFile.isFile()){ // if file doesn't exist, create it
             PrintWriter writer = new PrintWriter(path, "UTF-8");
         }
 
         FileReader fr = new FileReader(path);
-        LineNumberReader lr = new LineNumberReader(fr);
+        LineNumberReader lr = new LineNumberReader(fr); // initialize LineNumberReader to determine number of lines in a text file
 
 
 
         while (inPlay == 'y') {
 
-            int deckSize = 51;
+            int deckSize = 51; // initial size of the deck
+
+            // players card total
             int player1Total = 0;
             int player2Total = 0;
             int player3Total = 0;
             int computerTotal = 0;
+
+            // is the player playing
             boolean player1Playing = true;
             boolean player2Playing = true;
             boolean player3Playing = true;
             boolean computerPlaying = true;
+
+            // is the game itself running
             boolean isRunning = true;
+
+            // name of the winner
             String winner = "N/A";
 
+            // number of players not eliminated
             int numPlayer = 3;
 
+            // initialize the deck of cards
             int[] deckValue = {1, 1, 1, 1,
                     2, 2, 2, 2,
                     3, 3, 3, 3,
@@ -300,16 +336,14 @@ public class TwentyOne {
                     10, 10, 10, 10,
                     10, 10, 10, 10};
 
-
-            // put the code to draw first to cards here and then put the code to the code for the game n the while loop
-
+            // ask what the user wants to do
             System.out.println("1. Play");
             System.out.println("2. How To Play");
             System.out.println("3. Previous Winners");
 
             int option = input.nextInt();
 
-            if (option == 2) {
+            if (option == 2) { // display rules
 
                 System.out.println("Get 21 points on first two cards.");
                 System.out.println("If the sum is less than 21, player can decide to draw one more card or skip(pass)");
@@ -322,17 +356,17 @@ public class TwentyOne {
 
             } else if(option == 3) {
 
-                if(myFile.length() == 0){
+                if(myFile.length() == 0){ // if file is empty
                     System.out.println("No scores recorded");
                 } else{
                     while(lr.skip(Long.MAX_VALUE) > 0){
-
+                    // loop to go through all the lines
                     }
-                    int numLines = lr.getLineNumber();
+                    int numLines = lr.getLineNumber(); // number of lines
 
                     System.out.println("NOTE: N/A means that round was not finished.");
-                    for(int i = 2; i <= numLines; i+=4){
-                        System.out.println(Files.readAllLines(Paths.get(path)).get(i).substring(22));
+                    for(int i = 2; i <= numLines; i+=4){ // lines where the name of the winner is
+                        System.out.println(Files.readAllLines(Paths.get(path)).get(i).substring(22)); // ouput the number of winner
                     }
                 }
 
@@ -341,6 +375,7 @@ public class TwentyOne {
 
             }
 
+            // ask for player names
             input.nextLine();
             System.out.print("Player 1 name: ");
             String player1 = input.nextLine();
@@ -349,6 +384,7 @@ public class TwentyOne {
             System.out.print("Player 3 name: ");
             String player3 = input.nextLine();
 
+            // draw the first two cards
             player1Total += draw(deckValue, deckSize, player1);
             deckSize--;
             player2Total += draw(deckValue, deckSize, player2);
@@ -366,11 +402,13 @@ public class TwentyOne {
             computerTotal += computerThink(deckValue, deckSize, computerTotal);
             deckSize--;
 
+            // display players' total score
             System.out.println(player1 + "'s total: " + player1Total);
             System.out.println(player2 + "'s total: " + player2Total);
             System.out.println(player3 + "'s total: " + player3Total);
             System.out.println("Computer's total: " + computerTotal);
 
+            // check if the total of the first two cards are 21
             if (hasWon(player1Total, player2Total, player3Total, computerTotal) == 0) {
                 System.out.println("Draw");
                 winner = "Draw";
@@ -393,9 +431,9 @@ public class TwentyOne {
                 isRunning = false;
             }
 
-            while (isRunning) {
+            while (isRunning) { // while round is being played
 
-                int count = 0;
+                int skip = 0; // number of skips
 
                 if (player1Playing) {
 
@@ -408,7 +446,7 @@ public class TwentyOne {
                         player1Total += draw(deckValue, deckSize, player1);
                         deckSize--;
                     } else {
-                        count++;
+                        skip++;
                     }
 
                 }
@@ -424,7 +462,7 @@ public class TwentyOne {
                         player2Total += draw(deckValue, deckSize, player2);
                         deckSize--;
                     } else {
-                        count++;
+                        skip++;
                     }
 
                 }
@@ -440,7 +478,7 @@ public class TwentyOne {
                         player3Total += draw(deckValue, deckSize, player3);
                         deckSize--;
                     } else {
-                        count++;
+                        skip++;
                     }
 
                 }
@@ -458,6 +496,7 @@ public class TwentyOne {
                 input.nextLine();
 
 
+                // if players exceed 21, eliminate them
                 if (player1Total > 21) {
                     player1Playing = false;
                     numPlayer--;
@@ -483,6 +522,7 @@ public class TwentyOne {
                 }
 
 
+                // display players' total sore
                 System.out.println(player1 + "'s total: " + player1Total);
                 System.out.println(player2 + "'s total: " + player2Total);
                 System.out.println(player3 + "'s total: " + player3Total);
@@ -510,6 +550,7 @@ public class TwentyOne {
                     winner = "Computer";
                 }
 
+                // if everyone but one player is eliminated, declare him/her the winner
                 if (player1Playing && !player2Playing && !player3Playing && !computerPlaying) {
                     System.out.println(player1 + " wins! because others were eliminated");
                     isRunning = false;
@@ -532,7 +573,8 @@ public class TwentyOne {
                     winner = "Draw";
                 }
 
-                if (deckSize == 0 || count == numPlayer) {
+                // if all the cards are played or everyone choose to skip declare the player with highest score wins
+                if (deckSize == 0 || skip == numPlayer) {
                     if (player1Total < 22 && player1Total > player2Total && player1Total > player3Total && player1Total > computerTotal) {
                         System.out.println(player1 + " wins!");
                         winner = player1;
@@ -556,35 +598,37 @@ public class TwentyOne {
                     }
                 }
 
-            }
+            } // end of isRunning loop
 
+            // Congratulations message
             System.out.println("Congratulations " + winner + "! Would you like to play again? (yes/no)");
             inPlay = Character.toLowerCase(input.next().charAt(0));
-            while (inPlay !='y' && inPlay !='n'){
+            while (inPlay !='y' && inPlay !='n'){ // ask if the user wants to play more
                 System.out.println("Please answer again by responding in y or n"); //Ask the user to input their will to play or not correctly
                 inPlay = Character.toLowerCase(input.next().charAt(0));
             }//while inplay is invalid
 
-            if (inPlay == 'n'){
+            if (inPlay == 'n'){ // display a goodbye message
                 System.out.println("Thanks for playing");
             }
 
+
+            // get the time of the round played
             Date date = new Date();
-
             long time = date.getTime();
-
             Timestamp ts = new Timestamp(time);
-
             FileWriter fw = new FileWriter(myFile, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw);
 
+            // write the name of the players, the winner and the time played in a text file
             out.println("Played at: " + ts);
             out.println("Players in this round: " + player1 + " " + player2 + " " + player3 + " computer");
             out.println("Winner of this round: " + winner);
             out.println("_________________________________________________________________________________");
             out.close();
 
-        }
-    }
+        } // end of inPlay loop
+
+    } // end of main
 }
