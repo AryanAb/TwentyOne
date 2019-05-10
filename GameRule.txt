@@ -1,0 +1,5 @@
+Get 21 points on first two cards.
+If the sum is less than 21, player can decide to draw one more card or skip(pass).
+If all remaining players decide to skip, the player with the highest score without exceeding 21 wins.
+Let the other players be eliminated by exceeding 21.
+If you are eliminated, your score will be set to 0.
