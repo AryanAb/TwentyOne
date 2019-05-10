@@ -281,7 +281,7 @@ public class TwentyOne {
 
         char inPlay = 'y';
 
-        String path = "C:/Users/aryan/Test.txt"; // path of file
+        String path = "TwentyOne.txt"; // path of file
 
         System.out.println("Text file path: " + path); // output the path of file
 
