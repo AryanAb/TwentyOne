@@ -281,11 +281,11 @@ public class TwentyOne {
 
         char inPlay = 'y';
 
-        String path = "TwentyOne.txt"; // path of file
-
-        System.out.println("Text file path: " + path); // output the path of file
+        String path = "TwentyOne.txt"; // path of winners text file
+        String rulesPath = "GameRule.txt"; // path of game rules text file
 
         File myFile = new File(path); // crate File object
+        File ruleFile = new File(rulesPath);
 
         if(!myFile.isFile()){ // if file doesn't exist, create it
             PrintWriter writer = new PrintWriter(path, "UTF-8");
@@ -344,14 +344,10 @@ public class TwentyOne {
             int option = input.nextInt();
 
             if (option == 2) { // display rules
-
-                System.out.println("Get 21 points on first two cards.");
-                System.out.println("If the sum is less than 21, player can decide to draw one more card or skip(pass)");
-                //System.out.println("Reach a final score higher than the other players without exceeding 21");
-                System.out.println("If all remaining players decide to skip, the player with the highest score without exceeding 21 wins");
-                System.out.println("Let the other players be eliminated by exceeding 21");
-                System.out.println("If you are eliminated, your score will be set to 0");
-                System.out.println("Press Enter to play");
+                Scanner reader = new Scanner(ruleFile);
+                while(reader.hasNext()){
+                    System.out.println(reader.nextLine());
+                }
                 input.nextLine();
 
             } else if(option == 3) {
@@ -360,7 +356,7 @@ public class TwentyOne {
                     System.out.println("No scores recorded");
                 } else{
                     while(lr.skip(Long.MAX_VALUE) > 0){
-                    // loop to go through all the lines
+                        // loop to go through all the lines
                     }
                     int numLines = lr.getLineNumber(); // number of lines
 
